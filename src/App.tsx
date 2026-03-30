@@ -2,7 +2,7 @@ function App() {
 
   return (
     <>
-      <div>App</div>
+      <div className="min-h-screen bg-zinc-800 text-white">App</div>
     </>
   )
 }
