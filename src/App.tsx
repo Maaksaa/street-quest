@@ -1,10 +1,7 @@
-function App() {
+import MapView from './components/MapView';
 
-  return (
-    <>
-      <div className="min-h-screen bg-zinc-800 text-white">App</div>
-    </>
-  )
+function App() {
+  return <MapView />;
 }
 
-export default App
+export default App;
