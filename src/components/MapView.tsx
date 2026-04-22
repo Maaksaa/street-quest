@@ -13,6 +13,14 @@ export default function MapView() {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
     null
   );
+  const [visitedIds, setVisitedIds] = useState<number[]>([]);
+
+  const handleVisit = (id: number) => {
+    setVisitedIds((prev) => {
+      if (prev.includes(id)) return prev;
+      return [...prev, id];
+    });
+  };
 
   return (
     <Map
@@ -33,7 +41,7 @@ export default function MapView() {
             }}
             className="cursor-pointer text-3xl leading-none"
           >
-            📍
+            {visitedIds.includes(location.id) ? '✅' : '📍'}
           </button>
         </Marker>
       ))}
@@ -46,6 +54,11 @@ export default function MapView() {
         >
           <h3>{selectedLocation.name}</h3>
           <p>{selectedLocation.description}</p>
+          <button onClick={() => handleVisit(selectedLocation.id)}>
+            {visitedIds.includes(selectedLocation.id)
+              ? '✅ Посещено'
+              : 'Отметить посещённым'}
+          </button>
         </Popup>
       )}
     </Map>
