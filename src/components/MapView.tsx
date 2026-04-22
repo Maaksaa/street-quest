@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Map, { Marker, Popup } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { locations, type Location } from '../data/locations';
+import ProgressBar from './ProgressBar';
 
 const NOVI_SAD_COORDS = {
   longitude: 19.8335,
@@ -21,6 +22,8 @@ export default function MapView() {
       return [...prev, id];
     });
   };
+
+  const visitedCount = visitedIds.length;
 
   return (
     <Map
@@ -61,6 +64,7 @@ export default function MapView() {
           </button>
         </Popup>
       )}
+      <ProgressBar visited={visitedCount} total={locations.length} />
     </Map>
   );
 }
